@@ -103,32 +103,32 @@
 						</div>
 						<div class="sfs__row">
 							<p class="sfs__label">Contact/team name:</p>
-							<p class="sfs__text sfs__output"></p>
+							<p class="sfs__text sfs__output">{{ $sfs['contact-team-name'] or '' }}</p>
 						</div>
 						<div class="sfs__row">
 							<p class="sfs__label">Agency:</p>
-							<p class="sfs__text sfs__output"></p>
+							<p class="sfs__text sfs__output">{{ $sfs['agency-name'] or '' }}</p>
 						</div>
 						<div class="sfs__row sfs__row--address">
 							<p class="sfs__label">Agency address:</p>
-							<p class="sfs__text sfs__output"></p>
+							<p class="sfs__text sfs__output">{{ $sfs['agency-address'] or '' }}</p>
 						</div>
 						<div class="sfs__row">
 							<p class="sfs__label">Membership code number:</p>
-							<p class="sfs__text sfs__output"></p>
+							<p class="sfs__text sfs__output">{{ $sfs['membership-code-number'] or '' }}</p>
 						</div>
 						<div class="sfs__row">
 							<p class="sfs__label">Case reference number:</p>
-							<p class="sfs__text sfs__output"></p>
+							<p class="sfs__text sfs__output">{{ $sfs['case-reference-number'] or '' }}</p>
 						</div>
 						<div class="sfs__row">
 							<p class="sfs__label">Date of statement:</p>
-							<p class="sfs__text sfs__output"></p>
+							<p class="sfs__text sfs__output">{{ $sfs['date-of-statement'] or '' }}</p>
 						</div>
 						<div class="sfs__row">
 							<p class="sfs__label">Date of review:</p>
 							<p class="sfs__text">(if applicable):</p>
-							<p class="sfs__text sfs__output"></p>
+							<p class="sfs__text sfs__output">{{ $sfs['date-of-review'] or '' }}</p>
 						</div>
 
 						<!-- Add the class 'checked to all applicable options' -->
