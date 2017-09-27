@@ -17,8 +17,8 @@
 		"employment-status-type": {
 			"type": "string",
 			"enum": [
-				"Full-time",
-				"Part-time",
+				"Employed full-time'",
+				"Employed part-time",
 				"Unemployed",
 				"Not working due to illness / disability",
 				"Self-employed",
