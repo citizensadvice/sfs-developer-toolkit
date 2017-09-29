@@ -13,7 +13,7 @@
 	If rendering to screen use class 'screen'
 	If rendering as PDF use class 'a4'
 -->
-<body class="a4">
+<body class="{{ isset($print) && !$print? 'screen' : 'a4' }}">
 
 <div id="container">
 	<div class="sfs-form">
