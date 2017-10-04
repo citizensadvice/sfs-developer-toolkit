@@ -50,7 +50,6 @@
   position: relative;
   width: 100%;
   line-height: 1.4em;
-  letter-spacing: -0.03em;
 }
 
 .sfs-page {
@@ -177,7 +176,7 @@
 }
 
 .sfs__label {
-  font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 700;
   text-align: left;
 }
@@ -206,7 +205,7 @@
 }
 
 .sfs__text--italic {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 300;
   font-style: italic;
 }
@@ -418,7 +417,7 @@
   font-size: 2em;
   line-height: 2.4em;
   color: #00293e;
-  font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
 
