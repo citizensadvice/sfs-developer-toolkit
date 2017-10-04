@@ -139,14 +139,14 @@ html {
   For outout to PDF
 \*====================================*/
 
-body.a4 {
+.a4 {
   width: 595px;   
 }
-body.a4 .page {
+.a4 .page {
   width: 595px;
   height: 842px;
 }
-body.a4 .sfs-form {
+.a4 .sfs-form {
   font-size: 9.5px;
 }
 
@@ -154,16 +154,16 @@ body.a4 .sfs-form {
   For outout to screen
 \*====================================*/
 
-body.screen {
+.screen {
   width: 991px;
 }
-body.screen .page {
+.screen .page {
   width: 991px;
   height: 1403px;
   border: 0.05em solid #b7b9c2;
   margin: 1em;
 }
-body.screen .sfs-form {
+.screen .sfs-form {
   font-size: 16px; 
 }
 
