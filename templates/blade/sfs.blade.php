@@ -21,9 +21,9 @@
 			<div class="sfs-form">
 
 				<!--  Page 1 -->
-				<div class="sfs-page page">
+				<div class="sfs-page page sfs-page-1">
 
-					<div class="sfs-form__section sfs-form__section--underline">
+					<div class="sfs-form__section sfs-form__section--underline sfs-details-section">
 						<div class="sfs-col sfs-col--half">
 							<div class="sfs__row sfs__row--special-padding">
 								<p class="sfs__label">Name:</p>
@@ -55,7 +55,13 @@
 							</div>
 							<div class="sfs__row sfs__row--address">
 								<p class="sfs__label">Address:</p>
-								<p class="sfs__text sfs__output" id="client-address">{{ $sfs['client-address'] }}</p>
+								<p class="sfs__text sfs__output" id="client-address">
+									@if(!empty($print))
+										{{ $sfs['client-address'] or '' }}
+									@else
+										{!! Form::text('client_address', $sfs['client-address'], ['class' => 'form-control']) !!}
+									@endif
+								</p>
 							</div>
 							<div class="sfs__row sfs__row--dependents">
 								<p class="sfs__label">Dependent children:</p>
@@ -106,15 +112,51 @@
 							</div>
 							<div class="sfs__row">
 								<p class="sfs__label">Contact/team name:</p>
-								<p class="sfs__text sfs__output">{{ $sfs['contact-team-name'] or '' }}</p>
+								<p class="sfs__text sfs__output">
+									@if(!empty($print))
+										{{ $sfs['contact-team-name'] or '' }}
+									@else
+										<script type="text/javascript">
+                                            function swapCaseworker(){
+                                                var caseworker = $('input[name="caseworker"]'),
+                                                    caseworkerVal = caseworker.val(),
+                                                    hidden = $('input[name="caseworker_hidden"]'),
+                                                    hiddenVal = hidden.val();
+                                                caseworker.val(hiddenVal);
+                                                hidden.val(caseworkerVal);
+                                            }
+										</script>
+								<div class="input-group">
+									{!! Form::text('caseworker', $sfs['contact-team-name'], ['class' => 'form-control']) !!}
+									{!! Form::hidden('caseworker_hidden', $sfs['advisor-name']) !!}
+									<span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" title="Toggle Caseworker/Enquiry Advisor" onclick="swapCaseworker()">
+                                            <span class="glyphicon glyphicon-user"></span>
+                                        </button>
+                                    </span>
+								</div>
+								@endif
+								</p>
 							</div>
 							<div class="sfs__row">
 								<p class="sfs__label">Agency:</p>
-								<p class="sfs__text sfs__output">{{ $sfs['agency-name'] or '' }}</p>
+								<p class="sfs__text sfs__output">
+									@if(!empty($print))
+										{{ $sfs['agency-name'] or '' }}
+									@else
+										{!! Form::text('agency_name', $sfs['agency-name'], ['class' => 'form-control']) !!}
+									@endif
+								</p>
 							</div>
 							<div class="sfs__row sfs__row--address">
 								<p class="sfs__label">Agency address:</p>
-								<p class="sfs__text sfs__output">{{ $sfs['agency-address'] or '' }}</p>
+								<p class="sfs__text sfs__output">
+									@if(!empty($print))
+										{{ $sfs['agency-address'] or '' }}
+									@else
+										{!! Form::text('agency_address', $sfs['agency-address'], ['class' => 'form-control']) !!}
+									@endif
+								</p>
 							</div>
 							<div class="sfs__row">
 								<p class="sfs__label">Membership code number:</p>
@@ -122,7 +164,12 @@
 							</div>
 							<div class="sfs__row">
 								<p class="sfs__label">Case reference number:</p>
-								<p class="sfs__text sfs__output">{{ $sfs['case-reference-number'] or '' }}</p>
+								<p class="sfs__text sfs__output">
+								@if(!empty($print))
+									{{ $sfs['case-reference-number'] or '' }}
+								@else
+									{!! Form::text('case_reference', $sfs['case-reference-number'], ['class' => 'form-control']) !!}
+								@endif
 							</div>
 							<div class="sfs__row">
 								<p class="sfs__label">Date of statement:</p>
@@ -388,8 +435,8 @@
 							<div class="sfs__row extra-padding--top">
 								<p class="sfs__label">Additional notes (e.g. reasons for debt, circumstances,<br>temporary situations)</p>
 							</div>
-
                             <?php
+
                             // Define the available space
                             $charsPerLine = 50;
                             $availableLines = 50;
@@ -398,28 +445,22 @@
 
                             // Define an array of labels and answers for the 'other' values
                             // Non of these are required so they may not exist
-                            if(array_key_exists('client-employment-status-other', $sfs))
-                            {
+                            if(array_key_exists('client-employment-status-other', $sfs)){
                                 $otherValueAnswers['Employment other'] = $sfs['client-employment-status-other'];
                             }
-                            if(array_key_exists('partner-employment-status-other', $sfs))
-                            {
+                            if(array_key_exists('partner-employment-status-other', $sfs)){
                                 $otherValueAnswers['Partner\'s employment other'] = $sfs['partner-employment-status-other'];
                             }
-                            if(array_key_exists('housing-tenure-other', $sfs))
-                            {
+                            if(array_key_exists('housing-tenure-other', $sfs)){
                                 $otherValueAnswers['Housing tenure other'] = $sfs['housing-tenure-other'];
                             }
 
-                            foreach ($otherValueAnswers as $key => $value)
-                            {
-                            if($value !== '')
-                            {
+                            foreach ($otherValueAnswers as $key => $value){
+                            if($value !== '') {
                             $otherValueOutput = $key . ': ' . $value;
                             $thisLines = ceil(strlen($otherValueOutput) / $charsPerLine);
 
-                            if($thisLines < $availableLines)
-                            {
+                            if($thisLines < $availableLines){
                             ?>
 							<div class="sfs__row sfs__output sfs__note">
 								<p class="sfs__text">{{ $otherValueOutput }}</p>
@@ -427,23 +468,22 @@
                             <?php
                             }
 
-                            $availableLines = $availableLines - $thisLines;
+                            $availableLines -= $thisLines;
                             }
                             }
 
+                            if (!empty($print)) {
+
                             // Do we have any notes
-                            if(isset($sfs['notes']))
-                            {
+                            if(isset($sfs['notes'])){
                             $noteCounter = 0;
                             $notesCount = count($sfs['notes']);
 
-                            for ($i = 0; $i < $notesCount; $i++)
-                            {
+                            for ($i = 0; $i < $notesCount; $i++){
                             $note = $sfs['notes'][$i];
                             $thisLines = ceil(strlen($note) / $charsPerLine);
 
-                            if($thisLines < $availableLines)
-                            {
+                            if($thisLines < $availableLines){
                             ?>
 							<div class="sfs__row sfs__output sfs__note">
 								<p class="sfs__text">{{ $note }}</p>
@@ -452,19 +492,25 @@
                             $noteCounter++;
                             }
 
-                            $availableLines = $availableLines - $thisLines;
+                            $availableLines -= $thisLines;
                             }
                             }
 
-                            if($notesCount > $i)
-                            {
+                            if($notesCount > $i){
                                 $moreNotes = true;
                             }
-                            ?>
 
+                            ?>
 							<div class="sfs__text-block">
 								<p class="sfs__text"></p>
 							</div>
+                            <?php
+                            } else {
+                            ?>
+							{!! Form::textarea('notes', implode($sfs['notes'],"\n"), ['class' => 'form-control', 'rows' => 32, 'id' => 'notes']) !!}
+                            <?php
+                            }
+                            ?>
 						</div>
 					</div>
 				</div>
@@ -624,7 +670,7 @@
 								</tr>
 								<tr class="sfs__total">
 									<td class="sfs__label sfs__text--right">Total non-priority debts</td>
-									<td class="sfs__table-highlight">
+									<td class="sfs__table-highlight sfs__output sfs__number_box">
 										&pound;{{ number_format($sfs['debts']['total-non-priority-debts'],2 ) }}
 									</td>
 								</tr>
