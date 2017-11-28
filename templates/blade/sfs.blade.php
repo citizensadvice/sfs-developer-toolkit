@@ -31,7 +31,7 @@
 							</div>
 							<div class="sfs__row">
 								<p class="sfs__label">D.O.B.:</p>
-								<p class="sfs__text sfs__output" id="client-date-of-birth">{{ date('d/m/Y', strtotime($sfs['client-date-of-birth'])) }}</p>
+								<p class="sfs__text sfs__output" id="client-date-of-birth">{{ $sfs['client-date-of-birth'] or '' }}</p>
 							</div>
 							<!-- Add the class 'checked' to applicable option below -->
 							<div class="sfs__row">
@@ -47,11 +47,7 @@
 							<div class="sfs__row">
 								<p class="sfs__label">Partner D.O.B.:</p>
 								<p class="sfs__text">(if applicable):</p>
-								<p class="sfs__text sfs__output" id="partner-date-of-birth">
-									@if($sfs['partner-date-of-birth'])
-										{{ date('d/m/Y', strtotime($sfs['partner-date-of-birth'])) }}
-									@endif
-								</p>
+								<p class="sfs__text sfs__output" id="partner-date-of-birth">{{ $sfs['client-date-of-birth'] or '' }}</p>
 							</div>
 							<div class="sfs__row sfs__row--address">
 								<p class="sfs__label">Address:</p>
